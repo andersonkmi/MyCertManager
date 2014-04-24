@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoServiceProviderDetect
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A1CertificateManager", "A1CertificateManager\A1CertificateManager.csproj", "{C9582308-4A6F-4358-816E-24176D05401B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CertificateCore", "CertificateCore\CertificateCore.csproj", "{5AB496CA-7398-46BE-9205-D90D5FC15A26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C9582308-4A6F-4358-816E-24176D05401B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9582308-4A6F-4358-816E-24176D05401B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9582308-4A6F-4358-816E-24176D05401B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AB496CA-7398-46BE-9205-D90D5FC15A26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB496CA-7398-46BE-9205-D90D5FC15A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB496CA-7398-46BE-9205-D90D5FC15A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB496CA-7398-46BE-9205-D90D5FC15A26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
