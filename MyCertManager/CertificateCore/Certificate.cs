@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CertificateCore
 {
-    public class Class1
+    public class Certificate : IEquatable<Certificate>
     {
+
     }
 }

@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace A1CertificateManager
+namespace CertificateCore
 {
-    public class Class1
+    public enum BrazilPKICertificateType
     {
+        eCpf,
+        eCnpj,
+        Nfe,
+        Undefined
     }
 }
