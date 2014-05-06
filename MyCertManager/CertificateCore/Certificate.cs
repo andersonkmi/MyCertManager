@@ -109,6 +109,100 @@ namespace CertificateCore
             get { return serialNumber; }
             set { serialNumber = value; }
         }
+
+        public String SigningAlgorithm
+        {
+            get { return signingAlgorithm; }
+            set { signingAlgorithm = value; }
+        }
+
+        public String SubjectKeyIdentifier
+        {
+            get { return subjectKeyIdentifier; }
+            set { subjectKeyIdentifier = value; }
+        }
+
+        public String AuthorityKeyIdentifier
+        {
+            get { return authorityKeyIdentifier; }
+            set { authorityKeyIdentifier = value; }
+        }
+
+        public String ThumbPrint
+        {
+            get { return thumbPrint; }
+            set { thumbPrint = value; }
+        }
+
+        public String CertificateDirective
+        {
+            get { return certificateDirective; }
+            set { certificateDirective = value; }
+        }
+
+        public List<String> Crls
+        {
+            get
+            {
+                List<String> items = new List<string>();
+                items.AddRange(crls);
+                return items;
+            }
+        }
+
+        public HashSet<KeyUsage> KeyUsages
+        {
+            get
+            {
+                HashSet<KeyUsage> items = new HashSet<KeyUsage>(keyUsages);
+                return items;
+            }
+        }
+
+        public HashSet<ExtendedKeyUsage> ExtendedKeyUsages
+        {
+            get
+            {
+                HashSet<ExtendedKeyUsage> items = new HashSet<ExtendedKeyUsage>(extendedKeyUsages);
+                return items;
+            }
+        }
+
+        public Stack<Certificate> CertificateChain
+        {
+            get
+            {
+                return certificateChain;
+            }
+        }
+
+        public HashAlgorithm HashAlgorithm
+        {
+            get { return hashAlgorithm; }
+            set { hashAlgorithm = value; }
+        }
+        #endregion
+
+        #region Methods
+        public void AddCrls(String crlsAddress)
+        {
+            crls.Add(crlsAddress);
+        }
+
+        public void AddKeyUsage(KeyUsage usage)
+        {
+            keyUsages.Add(usage);
+        }
+
+        public void AddExtendedKeyUsage(ExtendedKeyUsage usage)
+        {
+            extendedKeyUsages.Add(usage);
+        }
+
+        public void AddCertificateChain(Certificate item)
+        {
+            certificateChain.Push(item);
+        }
         #endregion
     }
 }
