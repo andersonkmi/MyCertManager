@@ -43,6 +43,7 @@
     <Compile Include="BrazilPKICertificateType.cs" />
     <Compile Include="BrPkiCertificate.cs" />
     <Compile Include="Certificate.cs" />
+    <Compile Include="CertificateFactory.cs" />
     <Compile Include="CertificateType.cs" />
     <Compile Include="ExtendedKeyUsage.cs" />
     <Compile Include="HashAlgorithm.cs" />
