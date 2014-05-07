@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CertificateCore
 {
@@ -21,6 +17,24 @@ namespace CertificateCore
         private String votingSection;
         private String votingLocation;
         private String socialSecurityNumber;
+        #endregion
+
+        #region Constructor
+        public BrPkiCertificate()
+        {
+            type = BrazilPKICertificateType.Undefined;
+            taxpayerId = "";
+            federalTaxId = "";
+            certificateRep = "";
+            civilIdentification = "";
+            workerFundIdentification = "";
+            dateOfBirth = DateTime.Now;
+            voterIdNumber = "";
+            votingZone = "";
+            votingSection = "";
+            votingLocation = "";
+            socialSecurityNumber = "";
+        }
         #endregion
 
         #region Properties

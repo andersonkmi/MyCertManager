@@ -41,10 +41,53 @@ namespace CertificateCore
         private static readonly String SHA384WithRSAOid = "1.2.840.113549.1.1.12";
         private static readonly String SHA512WithRSAOid = "1.2.840.113549.1.1.13";
         #endregion
+
         #region Methods
-        public Certificate build()
+        public Certificate Build(String pfxFileName, String password)
         {
-            return null;
+            if (pfxFileName == null)
+            {
+                throw new ArgumentNullException("The PFX file name argument cannot be null");
+            }
+
+            if (password == null)
+            {
+                throw new ArgumentNullException("The password argument cannot be null");
+            }
+
+            X509Certificate2 x509Certiticate = new X509Certificate2(pfxFileName, password);
+            return Build(x509Certiticate);
+        }
+
+        public Certificate Build(X509Certificate2 certificate)
+        {
+            if (certificate == null)
+            {
+                throw new ArgumentNullException("The certificate argument cannot be null");
+            }
+
+            Certificate cert = null;
+            if (IsBrazilPKICertificate(certificate))
+            {
+                cert = new BrPkiCertificate();
+            }
+            else
+            {
+                cert = new Certificate();
+            }
+
+            
+            return cert;
+        }
+
+        private bool IsBrazilPKICertificate(X509Certificate2 certificate)
+        {
+            String subject = certificate.Subject;
+            if (subject.Contains(ECpf) || subject.Contains(ECnpj) || subject.Contains(NFe))
+            {
+                return true;
+            }
+            return false;
         }
         #endregion
     }
