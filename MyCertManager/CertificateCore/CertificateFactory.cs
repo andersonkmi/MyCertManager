@@ -66,17 +66,7 @@ namespace CertificateCore
                 throw new ArgumentNullException("The certificate argument cannot be null");
             }
 
-            Certificate cert = null;
-            if (IsBrazilPKICertificate(certificate))
-            {
-                cert = new BrPkiCertificate();
-            }
-            else
-            {
-                cert = new Certificate();
-            }
-
-            
+            Certificate cert = Create(certificate);            
             return cert;
         }
 
@@ -88,6 +78,30 @@ namespace CertificateCore
                 return true;
             }
             return false;
+        }
+
+        private Certificate Create(X509Certificate2 certificate)
+        {
+            if (IsBrazilPKICertificate(certificate))
+            {
+                return new BrPkiCertificate();
+            }
+            else
+            {
+                return new Certificate();
+            }
+        }
+
+        private void ConfigureCertificate(X509Certificate2 x509Certificate, Certificate certificate)
+        {
+            certificate.IssuedTo = x509Certificate.Subject;
+            certificate.Issuer = x509Certificate.Issuer;
+            certificate.Version = String.Format("%s", x509Certificate.Version);
+            certificate.ValidFrom = x509Certificate.NotBefore;
+            certificate.ValidTo = x509Certificate.NotAfter;
+            certificate.SerialNumber = x509Certificate.SerialNumber;
+            certificate.SigningAlgorithm = x509Certificate.SignatureAlgorithm.FriendlyName;
+
         }
         #endregion
     }
