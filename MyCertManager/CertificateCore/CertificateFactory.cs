@@ -66,7 +66,8 @@ namespace CertificateCore
                 throw new ArgumentNullException("The certificate argument cannot be null");
             }
 
-            Certificate cert = Create(certificate);            
+            Certificate cert = Create(certificate);
+            ConfigureCertificate(certificate, cert);
             return cert;
         }
 
@@ -94,6 +95,13 @@ namespace CertificateCore
 
         private void ConfigureCertificate(X509Certificate2 x509Certificate, Certificate certificate)
         {
+            ConfigureBasicInformation(x509Certificate, certificate);
+            ConfigureHashAlgorithm(x509Certificate, certificate);
+            ConfigureExtensions(x509Certificate, certificate);
+        }
+
+        private void ConfigureBasicInformation(X509Certificate2 x509Certificate, Certificate certificate)
+        {
             certificate.IssuedTo = x509Certificate.Subject;
             certificate.Issuer = x509Certificate.Issuer;
             certificate.Version = String.Format("%s", x509Certificate.Version);
@@ -101,7 +109,32 @@ namespace CertificateCore
             certificate.ValidTo = x509Certificate.NotAfter;
             certificate.SerialNumber = x509Certificate.SerialNumber;
             certificate.SigningAlgorithm = x509Certificate.SignatureAlgorithm.FriendlyName;
+        }
 
+        private void ConfigureHashAlgorithm(X509Certificate2 x509Certificate, Certificate certificate)
+        {
+            if (x509Certificate.SignatureAlgorithm.Value == SHA1WithRSAOid)
+            {
+                certificate.HashAlgorithm = HashAlgorithm.SHA1;
+            }
+            else if (x509Certificate.SignatureAlgorithm.Value == SHA256WthRSAOid)
+            {
+                certificate.HashAlgorithm = HashAlgorithm.SHA256;
+            }
+            else if (x509Certificate.SignatureAlgorithm.Value == SHA384WithRSAOid)
+            {
+                certificate.HashAlgorithm = HashAlgorithm.SHA384;
+            }
+            else if (x509Certificate.SignatureAlgorithm.Value == SHA512WithRSAOid)
+            {
+                certificate.HashAlgorithm = HashAlgorithm.SHA512;
+            }
+        }
+
+        private void ConfigureExtensions(X509Certificate2 x509Certificate, Certificate certificate)
+        {
+            X509ExtensionCollection extensions = x509Certificate.Extensions;
+            X509ExtensionEnumerator iterator = extensions.GetEnumerator();
         }
         #endregion
     }
