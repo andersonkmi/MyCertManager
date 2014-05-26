@@ -40,8 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CryptoServiceProviderInformation.cs" />
+    <Compile Include="CSPRegistryException.cs" />
     <Compile Include="ICSPRegistryCheck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SafenetCSPRegistryCheck.cs" />
+    <Compile Include="SafeSignCSPRegistryCheck.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
