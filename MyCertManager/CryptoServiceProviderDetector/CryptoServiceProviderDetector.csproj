@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseCSPRegistryCheck.cs" />
     <Compile Include="CryptoServiceProviderInformation.cs" />
+    <Compile Include="CSPDetector.cs" />
     <Compile Include="CSPRegistryException.cs" />
     <Compile Include="ICSPRegistryCheck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
