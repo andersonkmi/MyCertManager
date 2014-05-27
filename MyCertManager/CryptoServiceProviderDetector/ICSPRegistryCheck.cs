@@ -1,7 +1,7 @@
 ﻿
 namespace CryptoServiceProviderDetector
 {
-    interface ICSPRegistryCheck
+    public interface ICSPRegistryCheck
     {
         CryptoServiceProviderInformation verifyInstallation();
     }

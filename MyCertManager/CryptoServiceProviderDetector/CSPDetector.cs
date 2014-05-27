@@ -8,22 +8,23 @@ namespace CryptoServiceProviderDetector
         private ISet<ICSPRegistryCheck> cspDetectors;
         #endregion
 
-        #region Constructors
+        #region Constructor
         public CSPDetector()
         {
             this.cspDetectors = new HashSet<ICSPRegistryCheck>();
         }
-
-        public CSPDetector(ISet<ICSPRegistryCheck> detectors)
-        {
-            this.cspDetectors = detectors;
-        }
         #endregion
 
         #region Methods
+        public void AddCryptoServiceProviderVerifier(ICSPRegistryCheck item)
+        {
+            this.cspDetectors.Add(item);
+        }
+
         public ISet<CryptoServiceProviderInformation> detectCSPs()
         {
             ISet<CryptoServiceProviderInformation> results = new HashSet<CryptoServiceProviderInformation>();
+            executeDetectors(results);
             return results;
         }
 

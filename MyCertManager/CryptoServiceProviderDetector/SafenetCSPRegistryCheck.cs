@@ -3,37 +3,21 @@
 
 namespace CryptoServiceProviderDetector
 {
-    public class SafenetCSPRegistryCheck : ICSPRegistryCheck
+    public class SafeNetCSPRegistryCheck : ICSPRegistryCheck
     {
-        private const string ProgramsRegistryKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-
-        public CryptoServiceProviderInformation verifyInstallation()
+        protected override string CryptoServiceProviderDisplayName
         {
-            CryptoServiceProviderInformation cspInformation = new CryptoServiceProviderInformation();
-            findKey(cspInformation);
-            return cspInformation;
+            get
+            {
+                return "SafeNet";
+            }
         }
 
-        private void findKey(CryptoServiceProviderInformation cspInfo)
+        protected override string Pkcs11LibraryPath
         {
-            using (RegistryKey root = Registry.LocalMachine.OpenSubKey(ProgramsRegistryKey))
+            get
             {
-                foreach (string subKeyName in root.GetSubKeyNames())
-                {
-                    using (RegistryKey subKey = root.OpenSubKey(subKeyName))
-                    {
-                        string name = (string)subKey.GetValue("DisplayName");
-                        if (name.Contains("SafeSign"))
-                        {
-                            cspInfo.Vendor = (string)subKey.GetValue("Publisher");
-                            cspInfo.Version = (string)subKey.GetValue("DisplayVersion");
-                            cspInfo.Name = name;
-                            cspInfo.InstallDate = (string)subKey.GetValue("InstallDate");
-                            cspInfo.Pkcs11LibraryPath = @"C:\Windwos\system32\aetpkss1.dll";
-                            break;
-                        }
-                    }
-                }
+                return @"C:\Windows\system32\eTPKCS11.dll";
             }
         }
     }
