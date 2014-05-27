@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CryptoServiceProviderDetector
 {
@@ -14,7 +10,7 @@ namespace CryptoServiceProviderDetector
             set;
         }
 
-        public String Editor
+        public String Vendor
         {
             get;
             set;
@@ -27,6 +23,12 @@ namespace CryptoServiceProviderDetector
         }
 
         public String Pkcs11LibraryPath
+        {
+            get;
+            set;
+        }
+
+        public string InstallDate
         {
             get;
             set;
