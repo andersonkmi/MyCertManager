@@ -38,5 +38,29 @@ namespace CryptoServiceProviderDetectorNUnitTests
             Assert.True(safeSign.Name.Contains("SafeSign"));
             Assert.AreEqual(@"C:\Windows\system32\aetpkss11.dll", safeSign.Pkcs11LibraryPath);
         }
+
+        [Test]
+        public void TestSafeNetDetectorOK()
+        {
+            SafeNetCSPRegistryCheck safenetCheck = new SafeNetCSPRegistryCheck();
+            this.detector.AddCryptoServiceProviderVerifier(safenetCheck);
+            ISet<CryptoServiceProviderInformation> result = this.detector.DetectCSPs();
+            Assert.IsNotEmpty(result);
+            Assert.AreEqual(1, result.Count);
+            CryptoServiceProviderInformation safeSign = result.ElementAt(0);
+            Assert.True(safeSign.Name.Contains("SafeNet"));
+        }
+
+        [Test]
+        public void TestAllDetectorsOK()
+        {
+            SafeNetCSPRegistryCheck safenetCheck = new SafeNetCSPRegistryCheck();
+            SafeSignCSPRegistryCheck safesignCheck = new SafeSignCSPRegistryCheck();
+            this.detector.AddCryptoServiceProviderVerifier(safenetCheck);
+            this.detector.AddCryptoServiceProviderVerifier(safesignCheck);
+            ISet<CryptoServiceProviderInformation> result = this.detector.DetectCSPs();
+            Assert.IsNotEmpty(result);
+            Assert.AreEqual(2, result.Count);
+        }
     }
 }
