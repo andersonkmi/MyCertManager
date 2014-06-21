@@ -4,6 +4,7 @@ namespace CryptoServiceProviderDetector
 {
     public class CryptoServiceProviderInformation
     {
+        #region Properties
         public String Name
         {
             get;
@@ -33,5 +34,6 @@ namespace CryptoServiceProviderDetector
             get;
             set;
         }
+        #endregion
     }
 }
