@@ -1,5 +1,0 @@
-D:\development\MyCertManager\MyCertManager\CryptoServiceProviderDetector\obj\Debug\CryptoServiceProviderDetector.csprojResolveAssemblyReference.cache
-D:\development\MyCertManager\MyCertManager\CryptoServiceProviderDetector\bin\Debug\CryptoServiceProviderDetector.dll
-D:\development\MyCertManager\MyCertManager\CryptoServiceProviderDetector\bin\Debug\CryptoServiceProviderDetector.pdb
-D:\development\MyCertManager\MyCertManager\CryptoServiceProviderDetector\obj\Debug\CryptoServiceProviderDetector.dll
-D:\development\MyCertManager\MyCertManager\CryptoServiceProviderDetector\obj\Debug\CryptoServiceProviderDetector.pdb

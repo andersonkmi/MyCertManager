@@ -3,7 +3,7 @@
 
 namespace CryptoServiceProviderDetector
 {
-    public class SafeNetCSPRegistryCheck : ICSPRegistryCheck
+    public class SafeNetCSPRegistryCheck : BaseCSPRegistryCheck
     {
         protected override string CryptoServiceProviderDisplayName
         {
