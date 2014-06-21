@@ -21,14 +21,14 @@ namespace CryptoServiceProviderDetector
             this.cspDetectors.Add(item);
         }
 
-        public ISet<CryptoServiceProviderInformation> detectCSPs()
+        public ISet<CryptoServiceProviderInformation> DetectCSPs()
         {
             ISet<CryptoServiceProviderInformation> results = new HashSet<CryptoServiceProviderInformation>();
-            executeDetectors(results);
+            ExecuteDetectors(results);
             return results;
         }
 
-        private void executeDetectors(ISet<CryptoServiceProviderInformation> items)
+        private void ExecuteDetectors(ISet<CryptoServiceProviderInformation> items)
         {
             foreach (ICSPRegistryCheck detector in cspDetectors)
             {
