@@ -21,8 +21,8 @@ namespace CryptoServiceProviderDetector
                 {
                     using (RegistryKey subKey = root.OpenSubKey(subKeyName))
                     {
-                        string name = (string)subKey.GetValue("DisplayName");
-                        if (name.Contains(CryptoServiceProviderDisplayName))
+                        string name = (string)subKey.GetValue("DisplayName");                        
+                        if (name != null && name.Contains(CryptoServiceProviderDisplayName))
                         {
                             cspInfo.Vendor = (string)subKey.GetValue("Publisher");
                             cspInfo.Version = (string)subKey.GetValue("DisplayVersion");

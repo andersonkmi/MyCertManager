@@ -10,6 +10,9 @@ namespace CryptoServiceProviderDetectorNUnitTests
     {
         static void Main(string[] args)
         {
+            var test = new CSPDetectorTestCase();
+            test.Setup();
+            test.TestSafeSignDetectorOK();
         }
     }
 }
