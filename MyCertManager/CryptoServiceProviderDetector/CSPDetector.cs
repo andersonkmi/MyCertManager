@@ -5,20 +5,20 @@ namespace CryptoServiceProviderDetector
     public class CSPDetector
     {
         #region Internal attributes
-        private ISet<ICSPRegistryCheck> cspDetectors;
+        private readonly ISet<ICSPRegistryCheck> _cspDetectors;
         #endregion
 
         #region Constructor
         public CSPDetector()
         {
-            this.cspDetectors = new HashSet<ICSPRegistryCheck>();
+            _cspDetectors = new HashSet<ICSPRegistryCheck>();
         }
         #endregion
 
         #region Methods
         public void AddCryptoServiceProviderVerifier(ICSPRegistryCheck item)
         {
-            this.cspDetectors.Add(item);
+            _cspDetectors.Add(item);
         }
 
         public ISet<CryptoServiceProviderInformation> DetectCSPs()
@@ -30,7 +30,7 @@ namespace CryptoServiceProviderDetector
 
         private void ExecuteDetectors(ISet<CryptoServiceProviderInformation> items)
         {
-            foreach (ICSPRegistryCheck detector in cspDetectors)
+            foreach (var detector in _cspDetectors)
             {
                 items.Add(detector.verifyInstallation());
             }
