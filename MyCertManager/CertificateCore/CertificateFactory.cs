@@ -32,14 +32,14 @@ namespace CertificateCore
         private static readonly String TIMESTAMPING_OID = "1.3.6.1.5.5.7.3.8";
         private static readonly String OCSP_SIGNING_OID = "1.3.6.1.5.5.7.3.9";
 
-        private static readonly String ECpf = "e-CPF";
-        private static readonly String ECnpj = "e-CNPJ";
-        private static readonly String NFe = "NF-e";
+        private const String ECpf = "e-CPF";
+        private const String ECnpj = "e-CNPJ";
+        private const String NFe = "NF-e";
 
-        private static readonly String SHA1WithRSAOid = "1.2.840.113549.1.1.5";
-        private static readonly String SHA256WthRSAOid = "1.2.840.113549.1.1.11";
-        private static readonly String SHA384WithRSAOid = "1.2.840.113549.1.1.12";
-        private static readonly String SHA512WithRSAOid = "1.2.840.113549.1.1.13";
+        private const String SHA1WithRSAOid = "1.2.840.113549.1.1.5";
+        private const String SHA256WthRSAOid = "1.2.840.113549.1.1.11";
+        private const String SHA384WithRSAOid = "1.2.840.113549.1.1.12";
+        private const String SHA512WithRSAOid = "1.2.840.113549.1.1.13";
         #endregion
 
         #region Methods
@@ -55,7 +55,7 @@ namespace CertificateCore
                 throw new ArgumentNullException("The password argument cannot be null");
             }
 
-            X509Certificate2 x509Certiticate = new X509Certificate2(pfxFileName, password);
+            var x509Certiticate = new X509Certificate2(pfxFileName, password);
             return Build(x509Certiticate);
         }
 
@@ -66,19 +66,15 @@ namespace CertificateCore
                 throw new ArgumentNullException("The certificate argument cannot be null");
             }
 
-            Certificate cert = Create(certificate);
+            var cert = Create(certificate);
             ConfigureCertificate(certificate, cert);
             return cert;
         }
 
         private bool IsBrazilPKICertificate(X509Certificate2 certificate)
         {
-            String subject = certificate.Subject;
-            if (subject.Contains(ECpf) || subject.Contains(ECnpj) || subject.Contains(NFe))
-            {
-                return true;
-            }
-            return false;
+            var subject = certificate.Subject;
+            return subject.Contains(ECpf) || subject.Contains(ECnpj) || subject.Contains(NFe);
         }
 
         private Certificate Create(X509Certificate2 certificate)
