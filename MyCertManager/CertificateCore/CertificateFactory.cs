@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography.Pkcs;
-using System.Security.Cryptography;
 
 namespace CertificateCore
 {
@@ -36,10 +30,10 @@ namespace CertificateCore
         private const String ECnpj = "e-CNPJ";
         private const String NFe = "NF-e";
 
-        private const String SHA1WithRSAOid = "1.2.840.113549.1.1.5";
-        private const String SHA256WthRSAOid = "1.2.840.113549.1.1.11";
-        private const String SHA384WithRSAOid = "1.2.840.113549.1.1.12";
-        private const String SHA512WithRSAOid = "1.2.840.113549.1.1.13";
+        private const String Sha1WithRSAOid = "1.2.840.113549.1.1.5";
+        private const String Sha256WthRSAOid = "1.2.840.113549.1.1.11";
+        private const String Sha384WithRSAOid = "1.2.840.113549.1.1.12";
+        private const String Sha512WithRSAOid = "1.2.840.113549.1.1.13";
         #endregion
 
         #region Methods
@@ -109,28 +103,35 @@ namespace CertificateCore
 
         private void ConfigureHashAlgorithm(X509Certificate2 x509Certificate, Certificate certificate)
         {
-            if (x509Certificate.SignatureAlgorithm.Value == SHA1WithRSAOid)
+            switch (x509Certificate.SignatureAlgorithm.Value)
             {
-                certificate.HashAlgorithm = HashAlgorithm.SHA1;
-            }
-            else if (x509Certificate.SignatureAlgorithm.Value == SHA256WthRSAOid)
-            {
-                certificate.HashAlgorithm = HashAlgorithm.SHA256;
-            }
-            else if (x509Certificate.SignatureAlgorithm.Value == SHA384WithRSAOid)
-            {
-                certificate.HashAlgorithm = HashAlgorithm.SHA384;
-            }
-            else if (x509Certificate.SignatureAlgorithm.Value == SHA512WithRSAOid)
-            {
-                certificate.HashAlgorithm = HashAlgorithm.SHA512;
+                case Sha1WithRSAOid:
+                    certificate.HashAlgorithm = HashAlgorithm.Sha1;
+                    break;
+                case Sha256WthRSAOid:
+                    certificate.HashAlgorithm = HashAlgorithm.Sha256;
+                    break;
+                case Sha384WithRSAOid:
+                    certificate.HashAlgorithm = HashAlgorithm.Sha384;
+                    break;
+                case Sha512WithRSAOid:
+                    certificate.HashAlgorithm = HashAlgorithm.Sha512;
+                    break;
             }
         }
 
         private void ConfigureExtensions(X509Certificate2 x509Certificate, Certificate certificate)
         {
-            X509ExtensionCollection extensions = x509Certificate.Extensions;
-            X509ExtensionEnumerator iterator = extensions.GetEnumerator();
+            var extensions = x509Certificate.Extensions;
+            var iterator = extensions.GetEnumerator();
+            while (iterator.MoveNext())
+            {
+                var extension = iterator.Current;
+                switch (extension.Oid.Value)
+                {
+                    
+                }
+            }
         }
         #endregion
     }
